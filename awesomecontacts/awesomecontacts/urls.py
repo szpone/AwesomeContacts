@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from contacts.views import index
+from contacts.views import index, ContactFormView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
+    url(r'^add-contact/', ContactFormView.as_view(), name='add-contact')
 ]
