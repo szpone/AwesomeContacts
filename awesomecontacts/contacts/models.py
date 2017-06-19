@@ -9,3 +9,8 @@ class Contact(models.Model):
     job = models.CharField(max_length=64, null=False)
     company = models.CharField(max_length=64, null=False)
     email = models.EmailField(null=False)
+
+    def __str__(self):
+        return '%s %s %s %s %s %s' % (self.name, self.last_name,
+                                self.phone_number, self.job,
+                                self.company, self.email)
