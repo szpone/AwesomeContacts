@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-# from django.views.generic.edit import FormView
 from contacts.forms import ContactForm
 from django.views import View
 from contacts.models import Contact
@@ -13,8 +12,10 @@ class MainView(View):
         return render(request, 'contacts/main_page.html', {'contacts': contacts})
 
 
-def delete_contact(request, obj_id):
-    obj = get_object_or_404(Contact, pk=obj_id)
+def delete_contact(request, pk):
+    obj = get_object_or_404(Contact, pk=pk)
+    obj.delete()
+    return HttpResponse("Congrats, you deleted a contact")
 
 
 
