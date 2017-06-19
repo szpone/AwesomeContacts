@@ -18,6 +18,16 @@ def delete_contact(request, pk):
     return HttpResponse("Congrats, you deleted a contact")
 
 
+def update_contact(request, pk=None):
+    obj = get_object_or_404(Contact, pk=pk)
+    form = ContactForm(request.POST or None, instance=obj)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Updated")
+    return render(request, 'contacts/contact_update.html', {'form': form})
+
 
 class ContactFormView(View):
 
