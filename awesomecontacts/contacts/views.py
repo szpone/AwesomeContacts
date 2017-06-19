@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 # from django.views.generic.edit import FormView
 from contacts.forms import ContactForm
 from django.views import View
@@ -11,6 +11,11 @@ class MainView(View):
     def get(self, request):
         contacts = Contact.objects.all().order_by('last_name')
         return render(request, 'contacts/main_page.html', {'contacts': contacts})
+
+
+def delete_contact(request, obj_id):
+    obj = get_object_or_404(Contact, pk=obj_id)
+
 
 
 class ContactFormView(View):
@@ -31,7 +36,7 @@ class ContactFormView(View):
             obj.company = form.cleaned_data['company']
             obj.email = form.cleaned_data['email']
             obj.save()
-            return redirect('contacts/contact-detail')
+            return redirect('contact-detail')
 
 
 class ContactDetail(View):
