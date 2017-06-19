@@ -6,8 +6,11 @@ from contacts.models import Contact
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Elo")
+class MainView(View):
+
+    def get(self, request):
+        contacts = Contact.objects.all().order_by('last_name')
+        return render(request, 'contacts/main_page.html', {'contacts': contacts})
 
 
 class ContactFormView(View):
