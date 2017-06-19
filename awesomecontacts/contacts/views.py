@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 # from django.views.generic.edit import FormView
 from contacts.forms import ContactForm
 from django.views import View
@@ -9,11 +9,12 @@ from contacts.models import Contact
 def index(request):
     return HttpResponse("Elo")
 
+
 class ContactFormView(View):
 
     def get(self, request):
         form = ContactForm()
-        return render(request, 'contact.html',
+        return render(request, 'contacts/contact.html',
                     {'form': form})
 
     def post(self, request):
@@ -27,6 +28,14 @@ class ContactFormView(View):
             obj.company = form.cleaned_data['company']
             obj.email = form.cleaned_data['email']
             obj.save()
-            return HttpResponse("Thx!")
+            return redirect('contacts/contact-detail')
+
+
+class ContactDetail(View):
+
+    def get(self, request):
+        contact = Contact.objects.last()
+        return render(request, 'contacts/contact-detail.html', {'contact': contact})
+
 
 
