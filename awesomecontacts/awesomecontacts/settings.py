@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my_apps:
     'contacts',
+    # additional_apps:
+    'bootstrap',
     'bootstrapform',
-    'bootstrap'
+    'phonenumber_field'
 ]
 
 MIDDLEWARE = [

@@ -13,12 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from contacts.views import ContactFormView, ContactDetail, MainView, delete_contact, update_contact
 from django.conf.urls import url
 from django.contrib import admin
-from contacts.views import ContactFormView, ContactDetail, MainView, delete_contact, update_contact
+
+admin.site.site_header = 'AwesomeContacts Administration'
+admin.site.site_title = 'AwesomeContacts Administration'
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # I changed default admin URL for safety reasons
+    url(r'^awscontact/', admin.site.urls),
     url(r'^$', MainView.as_view(), name='main-page'),
     url(r'^add-contact/', ContactFormView.as_view(), name='add-contact'),
     url(r'^contact-detail/', ContactDetail.as_view(), name='contact-detail'),

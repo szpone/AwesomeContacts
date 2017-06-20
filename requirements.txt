@@ -2,3 +2,4 @@ Django==1.11.2
 pytz==2017.2
 django-boostrap
 django-boostrap-form
+django-phonenumber-field

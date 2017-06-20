@@ -1,5 +1,28 @@
 {% extends 'contacts/base.html' %}
 {% block content %}
-    <h1>Congrats! You added a new contact!</h1>
-    <p> {{ contact }} </p>
-{% endblock %}
+    <h1 class="center">Congrats! You added a new contact!</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Last name </th>
+                <th> First name </th>
+                <th> Phone number </th>
+                <th> Job </th>
+                <th> Company </th>
+                <th> Email </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> {{ contact.last_name }} </td>
+                <td> {{ contact.name }} </td>
+                <td> {{ contact.phone_number }} </td>
+                <td> {{ contact.job }} </td>
+                <td> {{ contact.company }} </td>
+                <td> {{ contact.email }} </td>
+                <td> <a class="btn btn-primary" role="button" href="{% url 'update-contact' pk=contact.id %}">Edit</a> </td>
+                <td> <a class="btn btn-danger" role="button" href="{% url 'delete-contact' pk=contact.id %}" >Delete</a> </td>
+            </tr>
+        </tbody>
+    {% endblock %}

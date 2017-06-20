@@ -1,11 +1,12 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
 class Contact(models.Model):
     last_name = models.CharField(max_length=64, null=False)
     name = models.CharField(max_length=64, null=False)
-    phone_number = models.IntegerField()
+    phone_number = PhoneNumberField()
     job = models.CharField(max_length=64, null=False)
     company = models.CharField(max_length=64, null=False)
     email = models.EmailField(null=False)
