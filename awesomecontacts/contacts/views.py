@@ -15,7 +15,7 @@ class MainView(View):
 def delete_contact(request, pk):
     obj = get_object_or_404(Contact, pk=pk)
     obj.delete()
-    return HttpResponse("Congrats, you deleted a contact")
+    return render(request, 'contacts/delete.html')
 
 
 def update_contact(request, pk=None):
@@ -25,7 +25,7 @@ def update_contact(request, pk=None):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return HttpResponse("Updated")
+            return render(request, 'contacts/update.html')
     return render(request, 'contacts/contact_update.html', {'form': form})
 
 

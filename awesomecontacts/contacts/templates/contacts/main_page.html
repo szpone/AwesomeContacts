@@ -4,7 +4,14 @@
     <table border=1>
         {% for contact in contacts %}
             <tr>
-                <td> {{ contact.last_name }} </td> <td> {{ contact.name }} </td> <td> {{ contact.phone_number }} </td> <td> {{ contact.job }} </td> <td> {{ contact.company }} </td> <td> {{ contact.email }} </td> <a href="{% url 'delete-contact' pk=contact.id %}" style="display:inline">delete</a>
+                <td> {{ contact.last_name }} </td>
+                <td> {{ contact.name }} </td>
+                <td> {{ contact.phone_number }} </td>
+                <td> {{ contact.job }} </td>
+                <td> {{ contact.company }} </td>
+                <td> {{ contact.email }} </td>
+                <td> <a href="{% url 'delete-contact' pk=contact.id %}" >delete</a> </td>
+                <td> <a href="{% url 'update-contact' pk=contact.id %}"> edit</a> </td>
             </tr>
         {% endfor %}
     </table>
