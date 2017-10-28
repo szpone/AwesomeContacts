@@ -3,3 +3,4 @@ pytz==2017.2
 django-bootstrap
 django-bootstrap-form
 django-phonenumber-field
+Gunicorn
